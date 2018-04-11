@@ -45,12 +45,13 @@ Class Homeomorphism (X Y : Set) (XOpen : Subset X -> Prop) (YOpen : Subset Y -> 
         composite f g = identity Y ->
         Continuous Y YOpen X XOpen g
   }.
+(*
 Class Locally_homeo (X Y : Set) (XOpen : Subset X -> Prop) (YOpen : Subset Y -> Prop) (f : X -> Y) :=
   {
     LH_conti :> Continuous X XOpen Y YOpen f;
     LH_locinv :
       forall x : X, exists U : Subset X, U x -> XOpen U -> Homeomophism U (image (restr f U)) 
-
+*)
 Section Connectedness.
 
 Variables X Y : Set.

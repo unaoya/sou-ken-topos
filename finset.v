@@ -237,44 +237,56 @@ Qed.
 Lemma sub_disj : forall X Y : Ensemble U, Included U X Y -> Y = Union U X (Setminus U Y X) /\ Disjoint U X (Setminus U Y X).
 Proof.
   intros.
+  assert (forall x : U, In U X x \/ ~ In U X x).
+  intros.
+  apply classic.
   split.
   assert (forall x : U, In U Y x -> In U X x \/ In U (Setminus U Y X) x).
   intros.
-  assert (forall x : U, In U Y x -> In U X x \/ ~ In U X x).
-  intros.
-  apply classic.
-  specialize H1 with x.
-  case H1.
-  apply H0.
+  specialize H0 with x.
+  case H0.
   intuition.
-  intro.
+  intros.
   right.
   unfold In.
   unfold Setminus.
-  split.
-  apply H0.
-  apply H2.
+  intuition.
   apply Extensionality_Ensembles.
   unfold Same_set.
   split.
   unfold Included.
   intros.
-  specialize H0 with x.
-  apply H0 in H.
-  case H.
+  specialize H1 with x.
+  apply H1 in H2.
+  case H2.
   intros.
   unfold In.
   apply Union_introl.
-  apply H2.
+  apply H3.
   intros.
   apply Union_intror.
+  apply H3.
+  unfold Included.
+  intros.
+  unfold In in H2.
+  destruct H2.
+  unfold Included in H.
+  apply H in H2.
   apply H2.
-
-  
-  
-  case H0.
-  apply Union_intror
-  
+  unfold In in H2.
+  unfold Setminus in H2.
+  apply H2.
+  apply Disjoint_intro.
+  intros.
+  intro.
+  unfold In in H1.
+  destruct H1.
+  unfold In in H1.
+  unfold In in H2.
+  unfold Setminus in H2.
+  intuition.
+Qed.
+(*
 Lemma finite_subset : forall X Y : Ensemble U, Included U X Y -> Finite Y -> Finite X.
 Proof.
   intros.
@@ -300,8 +312,8 @@ Proof.
   unfold In in H.
   destruct H.
   apply H1.
-
-  
+*)
+(*  
 Lemma union_decompose : forall X Y : Ensemble U, Union U X Y = Union U (Union U (Setminus U X Y) (Intersection U X Y)) (Setminus U Y X).
 Proof.
   intros.
@@ -349,7 +361,7 @@ Proof.
 
   apply 
   case H0.
-  
+*)
   
 (*
 Lemma fin_union : forall X Y : Ensemble U, Finite X -> Finite Y -> Finite (Union U X Y).

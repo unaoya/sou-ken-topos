@@ -123,3 +123,4 @@ Proof.
   apply H5.
 Qed.
 
+End Connectedness.

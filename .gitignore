@@ -1,6 +1,5 @@
-*.vo
-*.glob
 *~
+
 ### https://raw.github.com/github/gitignore/6fc979633d50a093e3245706b355c5555ed6ab9f/Coq.gitignore
 
 .*.aux
